@@ -6,13 +6,15 @@ use CodeIgniter\Model;
 
 class NewsModel extends Model
 {
-    protected $table = 'news';
+    protected $table = 'utilisateur';
     /**
      * @param false|string $slug
      *
      * @return array|null
      */
-    public function getNews($id = 0)
+    protected $allowedFields = ['role_id','username', 'password'];
+
+    public function getUsers($id = 0)
     {
         if ($id === 0) {
             return $this->findAll();

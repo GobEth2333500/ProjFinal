@@ -1,22 +1,19 @@
 <h2><?= esc($title) ?></h2>
 
-<?php if ($news_list !== []): ?>
+<?php if ($users_list !== []): ?>
 
-    <?php foreach ($news_list as $news_item): ?>
-
-        <h3><?= esc($news_item['title']) ?></h3>
-
+    <?php foreach ($users_list as $users_list): ?>  
         <div class="main">
-            <?= esc($news_item['body']) ?>
+            <h3><?= esc($users_list['username']) ?></h3>
+            <?= esc($users_list['password']) ?>
         </div>
-        <p><a href="/news/<?= esc($news_item['slug'], 'url') ?>">View article</a></p>
 
     <?php endforeach ?>
 
 <?php else: ?>
 
-    <h3>No News</h3>
+    <h3>No Users</h3>
 
-    <p>Unable to find any news for you.</p>
+    <p>Unable to find any users for you.</p>
 
 <?php endif ?>
