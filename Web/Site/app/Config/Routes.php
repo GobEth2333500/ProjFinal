@@ -16,9 +16,8 @@ $routes->get('pages/connexion', [Pages::class, 'connexion']); // Add this line
 $routes->post('pages', [Pages::class, 'create_user']); // Add this line
 $routes->get('pages/(:segment)', [Pages::class, 'show']);
 
-$routes->get('pages', [Pages::class, 'index']);
 
-$routes->match(['get', 'post'], 'Pages/loginAuth', 'SigninController::loginAuth');
-$routes->get('/connexion', 'Pages::index');
+$routes->match(['get', 'post'], 'pages/loginAuth', 'Pages::loginAuth');
+$routes->get('/signin', 'Pages::index');
 $routes->get('/logout', 'Pages::logout');
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'authGuard']);

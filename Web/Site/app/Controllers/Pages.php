@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use App\Models\user;
 use App\Models\NewsModel;
+use App\Models\userCon;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Pages extends BaseController
@@ -90,44 +91,54 @@ class Pages extends BaseController
     }
 
 
+    public function index2()
+    {
+        helper(['form']);
+        echo view('view');
+    } 
+  
     public function loginAuth()
     {
+
         $session = session();
-        $userModel = new UserModel();
-        $email = $this->request->getVar('username');
+        $userModel = new NewsModel();
+        $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         
         $data = $userModel->where('username', $username)->first();
         
+        
         if($data){
             $pass = $data['password'];
+            $salt = $data['sel'];
+            $password = $password . $salt;
+            $password = password_hash($password, PASSWORD_BCRYPT);
             $authenticatePassword = password_verify($password, $pass);
+
             if($authenticatePassword){
                 $ses_data = [
                     'role_id' => $data['role_id'],
-                    'name' => $data['name'],
                     'username' => $data['username'],
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                return redirect()->to('/dashboard');
+                return $this->index2();
             
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
-                return redirect()->to('/connexion');
+                return $this->connexion();
             }
         }else{
-            $session->setFlashdata('msg', 'username does not exist.');
-            return redirect()->to('/connexion');
+            $session->setFlashdata('msg', 'Email does not exist.');
+            return $this->connexion();
         }
     }
-    
+  
     public function logout()
     {
         $session = session();
         $session->destroy();
         return redirect()->to('/');
     }
-    
 }
   
