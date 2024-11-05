@@ -12,7 +12,7 @@ class NewsModel extends Model
      *
      * @return array|null
      */
-    protected $allowedFields = ['role_id','username', 'password'];
+    protected $allowedFields = ['role_id','username', 'password', 'sel'];
 
     public function getUsers($id = 0)
     {

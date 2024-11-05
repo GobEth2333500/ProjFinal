@@ -1,3 +1,4 @@
+DROP DATABASE projetfinal;
 CREATE DATABASE projetfinal;
 USE projetfinal;
 

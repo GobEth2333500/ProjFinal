@@ -10,10 +10,15 @@ $routes->get('/', 'Home::index');
 use App\Controllers\News; // Add this line
 use App\Controllers\Pages;
 
-$routes->get('news', [News::class, 'index']);
-$routes->get('news/new', [News::class, 'new']); // Add this line
-$routes->post('news', [News::class, 'create']); // Add this line
-$routes->get('news/(:segment)', [News::class, 'show']);
+$routes->get('pages', [Pages::class, 'index']);
+$routes->get('pages/inscription', [Pages::class, 'inscription']); // Add this line
+$routes->get('pages/connexion', [Pages::class, 'connexion']); // Add this line
+$routes->post('pages', [Pages::class, 'create_user']); // Add this line
+$routes->get('pages/(:segment)', [Pages::class, 'show']);
 
 $routes->get('pages', [Pages::class, 'index']);
-$routes->get('(:segment)', [Pages::class, 'view']);
+
+$routes->match(['get', 'post'], 'Pages/loginAuth', 'SigninController::loginAuth');
+$routes->get('/connexion', 'Pages::index');
+$routes->get('/logout', 'Pages::logout');
+$routes->get('/dashboard', 'Dashboard::index',['filter' => 'authGuard']);
