@@ -1,9 +1,9 @@
-<h2><?= esc($title) ?></h2>
+<h2>Inscription</h2>
 
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>
 
-<form action="/pages" method="post">
+<form action="/pages/create_user" method="post">
     <?= csrf_field() ?>
 
     <label for="username">Username</label>

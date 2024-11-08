@@ -46,7 +46,6 @@ class Pages extends BaseController
 
     public function loginAuth()
     {
-        helper('form');
         $session = session();
         $userModel = new NewsModel();
         $username = $this->request->getVar('username');
@@ -135,7 +134,9 @@ class Pages extends BaseController
     public function login()
     {       
          helper('form');
-
+         return view('templates/header', ['title' => 'Create a new user'])
+         . view('pages/login')
+         . view('templates/footer');
 
     }
 
