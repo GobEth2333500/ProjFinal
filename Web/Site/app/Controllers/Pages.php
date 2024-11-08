@@ -84,7 +84,7 @@ class Pages extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/');
+        return view('pages/login');
     }
     public function view(string $page = 'home')
     {
@@ -92,8 +92,6 @@ class Pages extends BaseController
             // Whoops, we don't have a page for that!
             throw new PageNotFoundException($page);
         }
-
-        $data['title'] = ucfirst($page); // Capitalize the first letter
 
         return view('templates/header', $data)
             . view('pages/' . $page)
@@ -103,13 +101,7 @@ class Pages extends BaseController
     public function index()
     {
         $model = model(NewsModel::class);
-
-        $data = [
-            'users_list' => $model->getUsers(),
-            'title'     => 'Users list',
-        ];
-
-        return view('templates/header', $data)
+        return view('templates/header')
             . view('pages/index')
             . view('templates/footer');
     }
@@ -134,7 +126,7 @@ class Pages extends BaseController
     public function login()
     {       
          helper('form');
-         return view('templates/header', ['title' => 'Create a new user'])
+         return view('templates/header')
          . view('pages/login')
          . view('templates/footer');
 
@@ -144,7 +136,7 @@ class Pages extends BaseController
     {
         helper('form');
 
-        return view('templates/header', ['title' => 'Create a new user'])
+        return view('templates/header')
             . view('pages/inscription')
             . view('templates/footer');
     }

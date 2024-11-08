@@ -1,19 +1,7 @@
-<h2><?= esc($title) ?></h2>
 
-<?php if ($users_list !== []): ?>
 
-    <?php foreach ($users_list as $users_list): ?>  
-        <div class="main">
-            <h3><?= esc($users_list['username']) ?></h3>
-            <?= esc($users_list['password']) ?>
-        </div>
 
-    <?php endforeach ?>
+    <h3>Bravo T Bin Bon</h3>
 
-<?php else: ?>
+    <p>Bravo T Bin Bon</p>
 
-    <h3>No Users</h3>
-
-    <p>Unable to find any users for you.</p>
-
-<?php endif ?>
