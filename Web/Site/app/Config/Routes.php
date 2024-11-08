@@ -1,23 +1,19 @@
 <?php
 
-namespace config;
 use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
 
-$route = Services::routes(true);
 
-if (file_exists(SYSTEMPATH.'Config/Routes.php'))
-{
-    require SYSTEMPATH. 'Config/Routes.php';
-}
+use App\Controllers\News; // Add this line
+use App\Controllers\Pages;
+$routes->get('pages', [Pages::class, 'view']); // Add this line
+$routes->get('pages/inscription', [Pages::class, 'inscription']); // Add this line
+$routes->get('pages/login', [Pages::class, 'login']); // Add this line
+$routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this line
+$routes->post('pages/loginAuth', [Pages::class, 'loginAuth']); // Add this line
+$routes->get('pages/(:segment)', [Pages::class, 'show']);
 
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
-$routes->setTranslateURIDashes(false);
-$routes->set404Override();
-$routes->setAutoRoute(true);
 
-$routes->get('/', 'Home::index');
+$routes->get('/logout', 'Pages::logout');
