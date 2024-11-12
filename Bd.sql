@@ -2,13 +2,18 @@
 CREATE DATABASE projetfinal;
 USE projetfinal;
 
-CREATE TABLE news(
-    id      INT             NOT NULL    AUTO_INCREMENT,
-    title   VARCHAR(128)    NOT NULL,
-    slug    VARCHAR(128)    NOT NULL,
-    body    TEXT            NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE slug (slug)    
+CREATE TABLE input(
+    input       VARCHAR(10)     NOT NULL
+);
+
+CREATE TABLE score(
+    id_user      	  INT      NOT NULL,
+    score       	  INT      NOT NULL,
+    up_input          INT      NOT NULL,
+    down_input        INT      NOT NULL,
+    left_input        INT      NOT NULL,
+    right_input       INT      NOT NULL,
+    pressed_input     INT      NOT NULL
 );
 
 CREATE TABLE role(
@@ -38,13 +43,18 @@ ADD FOREIGN KEY (role_id) REFERENCES `role` (role_id);
 ALTER TABLE userAttempt
 ADD FOREIGN KEY (user_id) REFERENCES utilisateur (id);
 
+ALTER TABLE score
+ADD FOREIGN KEY (user_id) REFERENCES utilisateur (id);
+
+ALTER TABLE score
+ALTER score SET DEFAULT 0,
+ALTER up_input SET DEFAULT 0,
+ALTER down_input SET DEFAULT 0,
+ALTER left_input SET DEFAULT 0,
+ALTER right_input SET DEFAULT 0,
+ALTER pressed_input SET DEFAULT 0;
+
 INSERT INTO `role`(`role_name`) VALUES
 ('Admin'),
 ('Visiteur'),
 ('Standard');
-
-
-INSERT INTO news VALUES
-(1,'Elvis sighted','elvis-sighted','Elvis was sighted at the Podunk internet cafe. It looked like he was writing a CodeIgniter app.'),
-(2,'Say it isn\'t so!','say-it-isnt-so','Scientists conclude that some programmers have a sense of humor.'),
-(3,'Caffeination, Yes!','caffeination-yes','World\'s largest coffee shop open onsite nested coffee shop for staff only.');
