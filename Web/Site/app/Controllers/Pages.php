@@ -40,7 +40,7 @@ class Pages extends BaseController
             'sel'       => $salt,
         ]);
 
-        return view('pages/index');
+        return view('pages/home');
     }
 
 
@@ -83,7 +83,9 @@ class Pages extends BaseController
     {
         $session = session();
         $session->destroy();
-        return view('pages/login');
+        return view('templates/header')
+        . view('pages/login')
+        . view('templates/footer');
     }
     public function view(string $page = 'home')
     {
@@ -100,35 +102,7 @@ class Pages extends BaseController
 
     }
     
-    public function index()
-    {
-              $model = model(NewsModel::class);
-        $data['users'] = $model->getUsers($id);
-        if ($data['users'] === null) {
-            throw new PageNotFoundException('Cannot find the users item: ' . $id);
-        }
-        $data['username'] = $data['users']['username'];
-        return view('templates/header')
-            . view('pages/home')
-            . view('templates/footer');
-    }
 
-    public function show(?string $id = null)
-    {
-        $model = model(NewsModel::class);
-
-        $data['users'] = $model->getUsers($id);
-
-        if ($data['users'] === null) {
-            throw new PageNotFoundException('Cannot find the users item: ' . $id);
-        }
-
-        $data['username'] = $data['users']['username'];
-
-        return view('templates/header', $data)
-            . view('pages/view')
-            . view('templates/footer');
-    }
 
     public function login()
     {       
