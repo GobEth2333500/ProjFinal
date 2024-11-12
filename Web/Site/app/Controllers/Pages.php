@@ -47,7 +47,7 @@ class Pages extends BaseController
     public function loginAuth()
     {
         $session = session();
-        $userModel = new NewsModel();
+        $userModel = model(NewsModel::class);
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         
@@ -58,7 +58,6 @@ class Pages extends BaseController
             $pass = $data['password'];
             $salt = $data['sel'];
             $password = $password . $salt;
-            $password = password_hash($password, PASSWORD_BCRYPT);
             $authenticatePassword = password_verify($password, $pass);
 
             if($authenticatePassword){
@@ -68,7 +67,7 @@ class Pages extends BaseController
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                return view('pages/index');
+                return view('pages/home');
             
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
@@ -88,21 +87,24 @@ class Pages extends BaseController
     }
     public function view(string $page = 'home')
     {
-        if (! is_file(APPPATH . 'Views/pages/' . $page . '.php')) {
-            // Whoops, we don't have a page for that!
-            throw new PageNotFoundException($page);
-        }
 
-        return view('templates/header', $data)
-            . view('pages/' . $page)
-            . view('templates/footer');
+            if (! is_file(APPPATH . 'Views/pages/' . $page . '.php')) {
+                // Whoops, we don't have a page for that!
+                throw new PageNotFoundException($page);
+            }
+    
+            return view('templates/header')
+                . view('pages/' . $page)
+                . view('templates/footer');
+      
+
     }
     
     public function index()
     {
         $model = model(NewsModel::class);
         return view('templates/header')
-            . view('pages/index')
+            . view('pages/home')
             . view('templates/footer');
     }
 

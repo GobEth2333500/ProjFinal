@@ -1,5 +1,11 @@
+<?php
 
-<a href="url">link text</a>
-<a href="url">link text</a>
-<a href="url">link text</a>
-<a href="url">link text</a>
+$session = session();
+$user = $session->username;
+?>
+<h1> Bienvenue </h1>
+<?php echo($user);
+
+
+
+
