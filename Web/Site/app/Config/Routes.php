@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 use App\Controllers\News; // Add this line
 use App\Controllers\Pages;
+use App\Controllers;
 $routes->get('pages', [Pages::class, 'view']); // Add this line
 $routes->get('pages/home', [Pages::class, 'view']); // Add this line
 $routes->get('pages/inscription', [Pages::class, 'inscription']); // Add this line

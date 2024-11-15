@@ -9,18 +9,28 @@
      if (isset($session->username))
      {
         $user = $session->username;
+        if ($user != "" or null)
+        {
+         
+          $menu= "<a href='home'>Home</a>
+         <a href='logout'>Logout</a>" . "Bienvenue" . $user;
+        }
+        else{
+        $menu="<a href='home'>Home</a>
+         <a href='login'>Login</a>
+         <a href='inscription'>Inscription</a>";
+        }
      } 
      else
      {
-        $user= 1;
+      $menu="<a href='home'>Home</a>
+      <a href='login'>Login</a>
+      <a href='inscription'>Inscription</a>";
      }
      ?>
 
-<a href="home">Home</a>
-<a href="logout">Logout</a>
-<a href="login">Connexion</a>
-<a href="inscription">Inscription</a>
-<?php echo($user);?>
+
+<?php echo($menu);?>
 </header>
 <body>
     
