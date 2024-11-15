@@ -46,7 +46,7 @@ class Pages extends BaseController
         $salt = bin2hex(random_bytes(16));
         $password = $post['password'] . $salt;
         $username = $post['username'];
-        $role_id  = 1;
+        $role_id  = 3;
         $model->save([
             'role_id'   => 1,
             'username'  => $post['username'],
@@ -112,10 +112,6 @@ class Pages extends BaseController
 
     }
 
-
-
-
-
     public function login()
     {       
          helper('form');
@@ -129,6 +125,13 @@ class Pages extends BaseController
 
         return $this->view('inscription');
     }
+    
+    public function admin()
+    {
+
+        return $this->view('admin');
+    }
+
 
 }
   
