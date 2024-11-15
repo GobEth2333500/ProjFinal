@@ -40,14 +40,14 @@ class Pages extends BaseController
             'sel'       => $salt,
         ]);
 
-        return view('pages/index');
+        return view('pages/home');
     }
 
 
     public function loginAuth()
     {
         $session = session();
-        $userModel = new NewsModel();
+        $userModel = model(NewsModel::class);
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
         
@@ -58,7 +58,6 @@ class Pages extends BaseController
             $pass = $data['password'];
             $salt = $data['sel'];
             $password = $password . $salt;
-            $password = password_hash($password, PASSWORD_BCRYPT);
             $authenticatePassword = password_verify($password, $pass);
 
             if($authenticatePassword){
@@ -68,7 +67,7 @@ class Pages extends BaseController
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($ses_data);
-                return view('pages/index');
+                return view('pages/home');
             
             }else{
                 $session->setFlashdata('msg', 'Password is incorrect.');
@@ -84,57 +83,31 @@ class Pages extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/');
+        return view('templates/header')
+        . view('pages/login')
+        . view('templates/footer');
     }
     public function view(string $page = 'home')
     {
-        if (! is_file(APPPATH . 'Views/pages/' . $page . '.php')) {
-            // Whoops, we don't have a page for that!
-            throw new PageNotFoundException($page);
-        }
 
-        $data['title'] = ucfirst($page); // Capitalize the first letter
+            if (! is_file(APPPATH . 'Views/pages/' . $page . '.php')) {
+                // Whoops, we don't have a page for that!
+                throw new PageNotFoundException($page);
+            }
+    
+            return view('templates/header')
+                . view('pages/' . $page)
+                . view('templates/footer');
+      
 
-        return view('templates/header', $data)
-            . view('pages/' . $page)
-            . view('templates/footer');
     }
     
-    public function index()
-    {
-        $model = model(NewsModel::class);
 
-        $data = [
-            'users_list' => $model->getUsers(),
-            'title'     => 'Users list',
-        ];
-
-        return view('templates/header', $data)
-            . view('pages/index')
-            . view('templates/footer');
-    }
-
-    public function show(?string $id = null)
-    {
-        $model = model(NewsModel::class);
-
-        $data['users'] = $model->getUsers($id);
-
-        if ($data['users'] === null) {
-            throw new PageNotFoundException('Cannot find the users item: ' . $id);
-        }
-
-        $data['username'] = $data['users']['username'];
-
-        return view('templates/header', $data)
-            . view('pages/view')
-            . view('templates/footer');
-    }
 
     public function login()
     {       
          helper('form');
-         return view('templates/header', ['title' => 'Create a new user'])
+         return view('templates/header')
          . view('pages/login')
          . view('templates/footer');
 
@@ -144,7 +117,7 @@ class Pages extends BaseController
     {
         helper('form');
 
-        return view('templates/header', ['title' => 'Create a new user'])
+        return view('templates/header')
             . view('pages/inscription')
             . view('templates/footer');
     }
