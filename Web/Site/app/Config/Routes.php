@@ -11,6 +11,7 @@ use App\Controllers\Pages;
 use App\Controllers;
 $routes->get('pages', [Pages::class, 'view']); // Add this line
 $routes->get('pages/home', [Pages::class, 'view']); // Add this line
+$routes->get('pages/admin', [Pages::class, 'admin']); // Add this line
 $routes->get('pages/inscription', [Pages::class, 'inscription']); // Add this line
 $routes->get('pages/login', [Pages::class, 'login']); // Add this line
 $routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this line

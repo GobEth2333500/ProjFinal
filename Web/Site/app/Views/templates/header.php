@@ -9,11 +9,21 @@
      if (isset($session->username))
      {
         $user = $session->username;
+        $id = $session->role_id;
         if ($user != "" or null)
         {
-         
-          $menu= "<a href='home'>Home</a>
-         <a href='logout'>Logout</a>" . "Bienvenue" . $user;
+         if ($id == "1")
+         {
+            $menu= "<a href='home'>Home</a>
+            <a href='logout'>Logout</a>
+            <a href='admin'>Admin</a>" . "<h3> Bienvenue" . $user."</h3>";
+         }
+         else{
+            $menu= "<a href='home'>Home</a>
+            <a href='logout'>Logout</a>" . "<h3> Bienvenue" . $user."</h3>";
+         }
+
+
         }
         else{
         $menu="<a href='home'>Home</a>
