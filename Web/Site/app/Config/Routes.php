@@ -17,3 +17,4 @@ $routes->get('pages/login', [Pages::class, 'login']); // Add this line
 $routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this line
 $routes->post('pages/loginAuth', [Pages::class, 'loginAuth']); // Add this line
 $routes->get('pages/logout', [Pages::class, 'logout']);
+$routes->post('pages/EditRoles', [Pages::class, 'EditRoles']); // Add this line
