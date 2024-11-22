@@ -46,7 +46,7 @@ class Pages extends BaseController
         $salt = bin2hex(random_bytes(16));
         $password = $post['password'] . $salt;
         $username = $post['username'];
-        $role_id  = 1;
+        $role_id  = 3;
         $model->save([
             'role_id'   => 1,
             'username'  => $post['username'],
@@ -112,10 +112,6 @@ class Pages extends BaseController
 
     }
 
-
-
-
-
     public function login()
     {       
          helper('form');
@@ -129,6 +125,61 @@ class Pages extends BaseController
 
         return $this->view('inscription');
     }
+    
+    public function admin()
+    {
+
+        return $this->view('admin');
+    }
+
+
+    public function EditRoles()
+    {
+        helper('form');
+        $userModel = model(user::class);
+        $data = $this->request->getPost(['user','id','nb']);
+        $users = $data['user'];
+        $id = $data['id'];
+        $nb = $data['nb'];
+
+        // Checks whether the submitted data passed the validation rules.
+
+        for ($x = 0; $x < $nb; $x++)
+         {
+            if ($id[$x] == "")
+            {
+                $users[$x] = 'x';
+            }
+            else
+            {
+            if ($id[$x] != "1" && $id[$x] != "2" && $id[$x] != "3")
+            {
+                $id[$x] = "3";
+            }
+            }
+            $id[$x];
+          
+
+            if ($users[$x] != 'x')
+            {
+                $int_id = (int)$id[$x];
+                $data2Upd = [
+                    'role_id' =>$int_id,
+                    'username'  => $users[$x],
+                ];
+                
+                $userModel->replace($data2Upd);
+            }
+            else{}
+
+            
+        }
+            return $this->view('home');
+
+    }
+
+
+
 
 }
   
