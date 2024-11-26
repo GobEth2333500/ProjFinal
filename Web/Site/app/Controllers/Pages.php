@@ -46,7 +46,7 @@ class Pages extends BaseController
         $salt = bin2hex(random_bytes(16));
         $password = $post['password'] . $salt;
         $username = $post['username'];
-        $role_id  = 3;
+        $role_id  = 1;
         $model->save([
             'role_id'   => 1,
             'username'  => $post['username'],
@@ -136,7 +136,8 @@ class Pages extends BaseController
     public function EditRoles()
     {
         helper('form');
-        $userModel = model(user::class);
+        $session = session();
+        $userModel = model(NewsModel::class);
         $data = $this->request->getPost(['user','id','nb']);
         $users = $data['user'];
         $id = $data['id'];
@@ -146,27 +147,33 @@ class Pages extends BaseController
 
         for ($x = 0; $x < $nb; $x++)
          {
+            $data2 = $userModel->where('username', $users[$x])->first();
             if ($id[$x] == "")
             {
                 $users[$x] = 'x';
             }
             else
             {
-            if ($id[$x] != "1" && $id[$x] != "2" && $id[$x] != "3")
-            {
-                $id[$x] = "3";
+                if ($id[$x] != "1" && $id[$x] != "2" && $id[$x] != "3")
+                {
+                    $id[$x] = "3";
+                }
             }
-            }
-            $id[$x];
-          
 
             if ($users[$x] != 'x')
             {
+
                 $int_id = (int)$id[$x];
                 $data2Upd = [
                     'role_id' =>$int_id,
                     'username'  => $users[$x],
+                    'password'  => $data2['password'],
+                    'sel'       => $data2['sel'],
                 ];
+                $ses_data = [
+                    'role_id' => $int_id,
+                ];
+                $session->set($ses_data);
                 
                 $userModel->replace($data2Upd);
             }
@@ -179,7 +186,10 @@ class Pages extends BaseController
     }
 
 
-
+    public function latestInput()
+    {
+        return $this->view('latestInput');
+    }
 
 }
   

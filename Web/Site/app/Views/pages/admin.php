@@ -8,6 +8,9 @@ $query   = $db->query('SELECT * FROM utilisateur');
 $results = $query->getResult();
 echo "<form action='/pages/EditRoles' method='post'>";
 $nb = 0;
+echo "<h3>1 = Admin<br>
+      2 = visiteur<br>
+      3 = Utilisateur</h3>";
 foreach ($results as $row) 
 {
    
