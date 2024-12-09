@@ -18,3 +18,4 @@ $routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this l
 $routes->post('pages/loginAuth', [Pages::class, 'loginAuth']); // Add this line
 $routes->get('pages/logout', [Pages::class, 'logout']);
 $routes->post('pages/EditRoles', [Pages::class, 'EditRoles']); // Add this line
+$routes->get('pages/latestInput', [Pages::class, 'latestInput']); // Add this line
