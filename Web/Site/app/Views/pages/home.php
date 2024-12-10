@@ -3,7 +3,10 @@
 
 
 <div class="content">
-
+    <?php
+$session = session();
+echo $session->role_id;
+?>
 <h1> Home </h1>
 
 </div>

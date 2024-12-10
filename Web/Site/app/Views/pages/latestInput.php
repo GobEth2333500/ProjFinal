@@ -30,13 +30,13 @@ width: 100%;
 
 <?php
 $db = db_connect();
-$query   = $db->query('SELECT * FROM input  ORDER BY input DESC LIMIT 10');
+$query   = $db->query('SELECT * FROM input  ORDER BY inputName DESC LIMIT 10');
 
 
     $results = $query->getResult();
     foreach ($results as $row) 
     {
-        echo("<tr><td>$row->input</td></tr>");
+        echo("<tr><td>$row->inputName</td></tr>");
     }
 
 
