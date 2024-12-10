@@ -28,6 +28,7 @@ CREATE TABLE role(
 CREATE TABLE utilisateur(
     id          INT                 NOT NULL    AUTO_INCREMENT,
     role_id     INT                 NOT NULL,
+    sel         VARCHAR(40)         NOT NULL,
     username    VARCHAR(50)         NOT NULL UNIQUE,
     password    VARCHAR(255)        NOT NULL,
     PRIMARY KEY(id)
