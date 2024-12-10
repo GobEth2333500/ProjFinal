@@ -6,6 +6,7 @@ footer{
    justify-content:center;
    position:Sticky;
    bottom:0px;
+   height:15%;
 }
 </style>
 <footer>

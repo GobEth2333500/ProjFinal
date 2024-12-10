@@ -87,6 +87,7 @@ class Pages extends BaseController
 
             if($authenticatePassword){
                 $ses_data = [
+                    'id' => $data['id'],
                     'role_id' => $data['role_id'],
                     'username' => $data['username'],
                     'isLoggedIn' => TRUE
@@ -190,6 +191,12 @@ class Pages extends BaseController
     {
         return $this->view('latestInput');
     }
+
+    public function scores()
+    {
+        return $this->view('scores');
+    }
+
 
 }
   

@@ -1,6 +1,7 @@
 <head>
      <meta http-equiv="refresh" content="222">
 <head>
+<div class="content">
 <style>
 
 td {
@@ -8,7 +9,7 @@ td {
   border-bottom: 1px solid #ddd;
 }
 td:hover {background-color: #D3D3D3;}
-#content{
+.content{
     display:flex;
     flex-direction:column;
     align-content:center;
@@ -18,7 +19,7 @@ width: 100%;
 }
 </style>
 
-<div id="content">
+
 <h1> Latest 10 inputs </h1>
 <div id = "table">
 <table>

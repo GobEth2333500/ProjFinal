@@ -1,3 +1,7 @@
+<style>
+
+</style>
+<div class="content">
 <?php 
 
 $db = db_connect();
@@ -23,6 +27,7 @@ echo "<input type='hidden' name='nb' value='$nb'/>"."Total Results: " . count($r
 echo " <input type='submit' name='submit' value='login'>
 </form>";
 
+?>
 
-
+</div>
 

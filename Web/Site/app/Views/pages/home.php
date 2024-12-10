@@ -1,14 +1,10 @@
-<div id="content">
-<style>
+<link rel="stylesheet" href="css.css">
+<div class="page">
 
-.content{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
 
-}
-td:hover {background-color: #D3D3D3;}
-</style>
+<div class="content">
+
 <h1> Home </h1>
 
+</div>
 </div>
