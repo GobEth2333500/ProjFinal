@@ -1,3 +1,4 @@
+
 <h2>Inscription</h2>
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors() ?>

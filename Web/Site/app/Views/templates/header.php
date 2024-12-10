@@ -1,4 +1,5 @@
 <!doctype html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <html>
 <head>
     <title>CodeIgniter Tutorial</title>
@@ -31,12 +32,14 @@ a{
          if ($id == "1")
          {
             $menu= "<a href='home'>Home</a>
+            <a href='ajax'>jeu</a>
             <a href='logout'>Logout</a>
             <a href='admin'>Admin</a>
             <a href='latestInput'>latestInput</a>" . $b;
          }
          else{
             $menu= "<a href='home'>Home</a>
+            <a href='ajax'>jeu</a>
             <a href='logout'>Logout</a>
             <a href='latestInput'>latestInput</a>" . $b;
          }
