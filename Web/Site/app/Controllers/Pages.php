@@ -205,7 +205,8 @@ class Pages extends BaseController
             $db = \Config\Database::connect();
             $model = model(Score::class);
             $session = session();
-            $id = $session->id;
+            //$id = $session->id;
+            $id = 1;
             $data = [
                 'score' => $model->getScore($id),
             ];
@@ -216,26 +217,34 @@ class Pages extends BaseController
             $up = 0;
             $down = 0;
             $pressed = 0;
-            foreach($inputs as $x){
-                if($x.inputName == "up"){
+            foreach($data['input'] as $x){
+                if($x['inputName'] == "up"){
                     $up = $up + 1;
                 }
-                else if($x.inputName == "down"){
+                else if($x['inputName'] == "down"){
                     $down = $down + 1;
                 }
-                else if($x.inputName == "left"){
+                else if($x['inputName'] == "left"){
                     $left = $left + 1;
                 }
-                else if($x.inputName == "right"){
+                else if($x['inputName'] == "right"){
                     $right = $right + 1;
                 }
                 else{
                     $pressed = $pressed + 1;
                 }
             }
-            //$db->query("UPDATE input SET score = ?, up_input = up_input + ? down_input = down_input + ? left_input = left_input + ? right_input = right_input + ? WHERE user_id = ?", [$no_lemari, $no_rak, $id]);
+            if($data['score']['score'] <= $_GET['score']){
+                $db->query("UPDATE score SET score = ?, up_input = up_input + ?, down_input = down_input + ?, left_input = left_input + ?, right_input = right_input + ?, pressed_input = pressed_input + ? WHERE id_user = $id", [$_GET["score"], $up, $down, $left, $right, $pressed]);
+            }
+            else{
+                $db->query("UPDATE score SET up_input = up_input + ?, down_input = down_input + ?, left_input = left_input + ?, right_input = right_input + ?, pressed_input = pressed_input + ? WHERE id_user = $id", [$up, $down, $left, $right, $pressed]);
+            }
+            $db->query("DELETE FROM input");
         }
-        return view("pages/ajax");
+        return view('templates/header', ['title' => 'A little game'])
+        . view('pages/ajax')
+        . view('templates/footer');
     }
 
     public function fetch(){
