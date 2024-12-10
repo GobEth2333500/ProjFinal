@@ -3,14 +3,14 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\user;
+use App\Models\Input;
 use App\Models\NewsModel;
+use App\Models\Score;
 use App\Models\userCon;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Pages extends BaseController
 {
-  
-
     public function create_user()
     {
         helper('form');
@@ -149,5 +149,55 @@ class Pages extends BaseController
             . view('templates/footer');
     }
 
+    public function jeu()
+    { 
+        return view('templates/header', ['title' => 'A little game'])
+        . view('pages/jeu')
+        . view('templates/footer');
+    }
+
+    public function ajaxMethod(){
+        if(isset($_GET["score"])){
+            $db = \Config\Database::connect();
+            $model = model(Score::class);
+            $session = session();
+            $id = $session->id;
+            $data = [
+                'score' => $model->getScore($id),
+            ];
+            $input = new Input();
+            $data['input'] = $input->findAll();
+            $left = 0;
+            $right = 0;
+            $up = 0;
+            $down = 0;
+            $pressed = 0;
+            foreach($inputs as $x){
+                if($x.inputName == "up"){
+                    $up = $up + 1;
+                }
+                else if($x.inputName == "down"){
+                    $down = $down + 1;
+                }
+                else if($x.inputName == "left"){
+                    $left = $left + 1;
+                }
+                else if($x.inputName == "right"){
+                    $right = $right + 1;
+                }
+                else{
+                    $pressed = $pressed + 1;
+                }
+            }
+            //$db->query("UPDATE input SET score = ?, up_input = up_input + ? down_input = down_input + ? left_input = left_input + ? right_input = right_input + ? WHERE user_id = ?", [$no_lemari, $no_rak, $id]);
+        }
+        return view("pages/ajax");
+    }
+
+    public function fetch(){
+        $input = new Input();
+        $data['input'] = $input->findAll();
+        return $this->response->setJSON($data);
+    }
 }
   

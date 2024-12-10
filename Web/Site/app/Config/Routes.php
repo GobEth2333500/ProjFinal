@@ -12,8 +12,14 @@ $routes->get('pages', [Pages::class, 'view']); // Add this line
 $routes->get('pages/inscription', [Pages::class, 'inscription']); // Add this line
 $routes->get('pages/login', [Pages::class, 'login']); // Add this line
 $routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this line
+$routes->post('/handle-myajax', [Pages::class, 'handleAjaxRequest']); // Add this line
 $routes->post('pages/loginAuth', [Pages::class, 'loginAuth']); // Add this line
-$routes->get('pages/(:segment)', [Pages::class, 'show']);
+$routes->get('pages/jeu', [Pages::class, 'jeu']); // Add this line
+$routes->get('pages/ajax', [Pages::class, 'ajaxMethod']); // Add this line
+$routes->get('ajax-input/getdata', [Pages::class, 'fetch']);
+
+
+
 
 
 $routes->get('/logout', 'Pages::logout');

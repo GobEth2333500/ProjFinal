@@ -3,7 +3,10 @@ CREATE DATABASE projetfinal;
 USE projetfinal;
 
 CREATE TABLE input(
-    input       VARCHAR(10)     NOT NULL
+    id     INT              NOT NULL   AUTO_INCREMENT,
+    inputName       VARCHAR(10)     NOT NULL,
+     used	BIT				NOT NULL,
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE score(
@@ -44,7 +47,7 @@ ALTER TABLE userAttempt
 ADD FOREIGN KEY (user_id) REFERENCES utilisateur (id);
 
 ALTER TABLE score
-ADD FOREIGN KEY (user_id) REFERENCES utilisateur (id);
+ADD FOREIGN KEY (id_user) REFERENCES utilisateur (id);
 
 ALTER TABLE score
 ALTER score SET DEFAULT 0,
@@ -53,6 +56,9 @@ ALTER down_input SET DEFAULT 0,
 ALTER left_input SET DEFAULT 0,
 ALTER right_input SET DEFAULT 0,
 ALTER pressed_input SET DEFAULT 0;
+
+ALTER TABLE input
+ALTER used SET DEFAULT 0;
 
 INSERT INTO `role`(`role_name`) VALUES
 ('Admin'),
