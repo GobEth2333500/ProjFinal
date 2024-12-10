@@ -8,6 +8,7 @@
 header{
    display:flex;
    justify-content:center;
+   align-items:center;
    position:Sticky;
    top:0px;
    height:15%;
@@ -32,18 +33,18 @@ a{
          if ($id == "1")
          {
             $menu= "<a href='home'>Home</a>
-            <a href='ajax'>jeu</a>
+            <a href='ajax'>Jeu</a>
             <a href='logout'>Logout</a>
             <a href='admin'>Admin</a>
             <a href='latestInput'>LatestInput</a>
-             <a href='scores'>Scores</a>" . $b;
+             <a href='scores'>Scores</a><br>" . $b;
          }
          else{
             $menu= "<a href='home'>Home</a>
-            <a href='ajax'>jeu</a>
+            <a href='ajax'>Jeu</a>
             <a href='logout'>Logout</a>
             <a href='latestInput'>latestInput</a>
-            <a href='scores'>Scores</a>" . $b;
+            <a href='scores'>Scores</a><br>" . $b;
          }
 
 

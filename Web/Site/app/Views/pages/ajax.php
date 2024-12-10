@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    just
 }
 .gameBox{
     width:60%;
@@ -34,7 +33,7 @@
     var score;
 
     function clickMeButton(){
-        var timeLeft = 5;
+        var timeLeft = 100;
         var elem = document.getElementById('some_div');
         var timerId = setInterval(countdown, 1000);
         
