@@ -35,13 +35,15 @@ a{
             <a href='ajax'>jeu</a>
             <a href='logout'>Logout</a>
             <a href='admin'>Admin</a>
-            <a href='latestInput'>latestInput</a>" . $b;
+            <a href='latestInput'>LatestInput</a>
+             <a href='scores'>Scores</a>" . $b;
          }
          else{
             $menu= "<a href='home'>Home</a>
             <a href='ajax'>jeu</a>
             <a href='logout'>Logout</a>
-            <a href='latestInput'>latestInput</a>" . $b;
+            <a href='latestInput'>latestInput</a>
+            <a href='scores'>Scores</a>" . $b;
          }
 
 
@@ -49,16 +51,14 @@ a{
         else{
         $menu="<a href='home'>Home</a>
          <a href='login'>Login</a>
-         <a href='inscription'>inscription</a>
-         <a href='latestInput'>latestInput</a>";
+         <a href='inscription'>inscription</a>";
         }
      } 
      else
      {
       $menu="<a href='home'>Home</a>
       <a href='login'>Login</a>
-      <a href='inscription'>inscription</a>
-      <a href='latestInput'>latestInput</a>"
+      <a href='inscription'>inscription</a>"
       ;
      }
      ?>
