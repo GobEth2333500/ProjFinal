@@ -2,7 +2,7 @@
 
 <?= session()->getFlashdata('error') ?>
 
-<form action="/pages/loginAuth" method="post">
+<form action="loginAuth" method="post">
 
     <label for="username">Username</label>
     <input type="input" name="username">

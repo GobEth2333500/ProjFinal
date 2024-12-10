@@ -138,9 +138,136 @@ class Pages extends BaseController
     {
         helper('form');
 
+<<<<<<< Updated upstream
         return view('templates/header')
             . view('pages/inscription')
             . view('templates/footer');
+=======
+        return $this->view('inscription');
+    }
+    
+    public function admin()
+    {
+
+        return $this->view('admin');
+    }
+
+
+    public function EditRoles()
+    {
+        helper('form');
+        $db = \Config\Database::connect();
+        $session = session();
+        $userModel = model(NewsModel::class);
+        $data = $this->request->getPost(['user','id','nb']);
+        $users = $data['user'];
+        $role_id = $data['id'];
+        $nb = $data['nb'];
+
+        // Checks whether the submitted data passed the validation rules.
+
+        for ($x = 0; $x < $nb; $x++)
+         {
+            $data2 = $userModel->where('username', $users[$x])->first();
+            if ($role_id[$x] == "")
+            {
+                $users[$x] = 'x';
+            }
+            else
+            {
+                if ($role_id[$x] != "1" && $role_id[$x] != "2" && $role_id[$x] != "3")
+                {
+                    $role_id[$x] = "3";
+                }
+            }
+
+            if ($users[$x] != 'x')
+            {
+                if ($session->username == $data2['username'])
+                {
+                    $ses_data = [
+                        'role_id' => $int_id,
+                    ];
+                    $session->set($ses_data);
+                }
+                $int_id = (int)$role_id[$x];
+
+
+                
+                $db->query("UPDATE utilisateur SET role_id = ? WHERE id = ?", [$role_id[$x], $data2['id']]);
+            }
+            else{}
+
+            
+        }
+            return $this->view('home');
+
+    }
+
+
+    public function latestInput()
+    {
+        return $this->view('latestInput');
+    }
+
+
+    public function scores()
+    {
+        return $this->view('scores');
+    }
+
+    public function ajaxMethod(){
+        if(isset($_GET["score"])){
+            $db = \Config\Database::connect();
+            $model = model(Score::class);
+            $session = session();
+            $id = $session->id;
+
+            $data = [
+                'score' => $model->getScore($id),
+            ];
+            $input = new Input();
+            $data['input'] = $input->findAll();
+            $left = 0;
+            $right = 0;
+            $up = 0;
+            $down = 0;
+            $pressed = 0;
+            foreach($data['input'] as $x){
+                if($x['inputName'] == "up"){
+                    $up = $up + 1;
+                }
+                else if($x['inputName'] == "down"){
+                    $down = $down + 1;
+                }
+                else if($x['inputName'] == "left"){
+                    $left = $left + 1;
+                }
+                else if($x['inputName'] == "right"){
+                    $right = $right + 1;
+                }
+                else{
+                    $pressed = $pressed + 1;
+                }
+            }
+            if($data['score']['score'] <= $_GET['score']){
+                $db->query("UPDATE score SET score = ?, up_input = up_input + ?, down_input = down_input + ?, left_input = left_input + ?, right_input = right_input + ?, pressed_input = pressed_input + ? WHERE id_user = $id", [$_GET["score"], $up, $down, $left, $right, $pressed]);
+            }
+            else{
+                $db->query("UPDATE score SET up_input = up_input + ?, down_input = down_input + ?, left_input = left_input + ?, right_input = right_input + ?, pressed_input = pressed_input + ? WHERE id_user = $id", [$up, $down, $left, $right, $pressed]);
+            }
+            $db->query("DELETE FROM input");
+        }
+        return view('templates/header', ['title' => 'A little game'])
+        . view('pages/ajax')
+        . view('templates/footer');
+    }
+
+    public function fetch(){
+        $input = new Input();
+        $data['input'] = $input->findAll();
+        return $this->response->setJSON($data);
+>>>>>>> Stashed changes
     }
 
 }

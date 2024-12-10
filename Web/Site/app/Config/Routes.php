@@ -14,5 +14,16 @@ $routes->post('pages/create_user', [Pages::class, 'create_user']); // Add this l
 $routes->post('pages/loginAuth', [Pages::class, 'loginAuth']); // Add this line
 $routes->get('pages/(:segment)', [Pages::class, 'show']);
 
+<<<<<<< Updated upstream
+=======
+$routes->get('pages/ajax', [Pages::class, 'ajaxMethod']); // Add this line
+$routes->get('pages/getdata', [Pages::class, 'fetch']);
+
+
+
+
+
+$routes->get('/logout', 'Pages::logout');
+>>>>>>> Stashed changes
 
 $routes->get('pages/logout', [Pages::class, 'logout']);
