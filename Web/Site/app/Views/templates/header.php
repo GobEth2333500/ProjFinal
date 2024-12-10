@@ -10,6 +10,7 @@ header{
    justify-content:center;
    position:Sticky;
    top:0px;
+   height:15%;
 }
 a{
    padding-right: 30px;

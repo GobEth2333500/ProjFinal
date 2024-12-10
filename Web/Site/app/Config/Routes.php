@@ -31,3 +31,7 @@ $routes->get('pages/logout', [Pages::class, 'logout']);
 $routes->post('pages/EditRoles', [Pages::class, 'EditRoles']); // Add this line
 $routes->get('pages/latestInput', [Pages::class, 'latestInput']); // Add this line
 
+
+$routes->get('pages/scores', [Pages::class, 'scores']); // Add this line
+
+
