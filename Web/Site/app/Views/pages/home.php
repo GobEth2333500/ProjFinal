@@ -1,5 +1,14 @@
+<div id="content">
+<style>
 
-<a href="url">link text</a>
-<a href="url">link text</a>
-<a href="url">link text</a>
-<a href="url">link text</a>
+.content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+}
+td:hover {background-color: #D3D3D3;}
+</style>
+<h1> Home </h1>
+
+</div>
