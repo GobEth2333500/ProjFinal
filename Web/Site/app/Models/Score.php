@@ -14,9 +14,17 @@ class Score extends Model
     {
         $score = $this->where(['id_user' => $id])->first();
         if ($score == null) {
-            $this->save([
-                'role_id'   => $id
-            ]);
+            $data = [
+                'id_user' => $id,
+                'score' => 0,
+                'up_input' => 0,
+                'down_input' => 0,
+                'left_input' => 0,
+                'right_input' => 0,
+                'pressed_input' => 0
+            ];
+            $this->insert($data);
+
             $score = $this->where(['id_user' => $id])->first();
         }      
         return $score;
