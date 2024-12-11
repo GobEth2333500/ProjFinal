@@ -8,7 +8,12 @@
 
 
 <style> header{
+   display:flex;
+   justify-content:center;
+   align-items:center;
    background-color:black;
+   height:10vh;
+   width:100%;
 }
 a{
    color:white;
@@ -16,6 +21,7 @@ a{
 }
 a{
    color:white;
+   margin:1vh;
 }
 </style>
 <header>
@@ -24,7 +30,7 @@ a{
      if (isset($session->username))
      {
         $user = $session->username;
-        $b = "<br><h3> Bienvenue" . $user."</h3>";
+        $b = "<h3> Bienvenue" . $user."</h3>";
         $id = $session->role_id;
         if ($user != "" or null)
         {
@@ -35,14 +41,14 @@ a{
             <a href='logout'>Logout</a>
             <a href='admin'>Admin</a>
             <a href='latestInput'>LatestInput</a>
-             <a href='scores'>Scores</a><br>" . $b;
+             <a href='scores'>Scores</a>";
          }
          else{
             $menu= "<a href='home'>Home</a>
             <a href='ajax'>Jeu</a>
             <a href='logout'>Logout</a>
             <a href='latestInput'>latestInput</a>
-            <a href='scores'>Scores</a><br>" . $b;
+            <a href='scores'>Scores</a>";
          }
 
 
@@ -65,6 +71,7 @@ a{
 
 <?php echo($menu);?>
 </header>
+<h1><?phpecho($b)?></h1>
 
     
 

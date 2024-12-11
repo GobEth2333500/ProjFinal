@@ -1,6 +1,18 @@
 <head>
 
 </head>
+<style>
+.page{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+   height:80vh;
+
+}
+
+</style>
+<div class = "page">
 <div class = "content">
 
 <?php
@@ -52,15 +64,8 @@ $arrayUsers = array();
 
         
 ?>
-
-
+    </div>
+    </div>
     </div>
 
-    <style> 
-    .content {
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-    }
-    </style>
+

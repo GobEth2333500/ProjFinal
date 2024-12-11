@@ -1,8 +1,17 @@
 <head>
 
 </head>
-<h2>Connexion</h2>
+<style>
+.page{
+   height:80vh;
+
+}
+
+</style>
+<div class = "page">
+
 <div class="content">
+<h2>Connexion</h2>
 <?= session()->getFlashdata('error') ?>
 
 <form action="/pages/loginAuth" method="post">
@@ -18,4 +27,5 @@
 
     <input type="submit" name="submit" value="login">
 </form>
-</div>
+
+</div></div>

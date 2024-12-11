@@ -1,7 +1,13 @@
 <head>
 
 </head>
+<style>
+.page{
+   height:80vh;
 
+}
+
+</style>
 <div class="page">
 
 

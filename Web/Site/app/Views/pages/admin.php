@@ -1,6 +1,14 @@
 <head>
 
 </head>
+<style>
+.page{
+   height:80vh;
+
+}
+
+</style>
+<div class="page">
 <div class="content">
 <?php 
 
@@ -30,4 +38,4 @@ echo " <input type='submit' name='submit' value='login'>
 ?>
 
 </div>
-
+</div>
