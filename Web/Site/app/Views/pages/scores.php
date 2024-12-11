@@ -1,3 +1,6 @@
+<head>
+
+</head>
 <div class = "content">
 
 <?php

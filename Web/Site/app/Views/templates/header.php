@@ -1,25 +1,23 @@
 <!doctype html>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<html>
 <head>
+
     <title>CodeIgniter Tutorial</title>
 </head>
-<style>
-header{
-   display:flex;
-   justify-content:center;
-   align-items:center;
-   position:Sticky;
-   top:0px;
-   height:15%;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<html>
+
+
+<style> header{
+   background-color:black;
 }
 a{
-   padding-right: 30px;
-   padding-left: 30px;
-  
-  }
+   color:white;
+   text-decoration:none;
+}
+a{
+   color:white;
+}
 </style>
-
 <header>
     <?php
     $session = session();

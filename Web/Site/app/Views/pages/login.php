@@ -1,3 +1,6 @@
+<head>
+
+</head>
 <h2>Connexion</h2>
 <div class="content">
 <?= session()->getFlashdata('error') ?>
