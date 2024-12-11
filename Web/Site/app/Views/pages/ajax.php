@@ -15,7 +15,13 @@
     width:60%;
     height:60%;
 }
+.page{
+   height:80vh;
+
+}
+
 </style>
+<div class="page">
 <div class="container">
     <button type="click" onclick="clickMeButton()">Start Game</button>
     <h2 id="timer"></h2>
@@ -23,7 +29,7 @@
     <div class="gameBox" id="gameBox">
     </div>
 </div>
-
+</div>
 
        
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
