@@ -213,8 +213,7 @@ class Pages extends BaseController
             $db = \Config\Database::connect();
             $model = model(Score::class);
             $session = session();
-            //$id = $session->id;
-            $id = 1;
+            $id = $session->id;
             $data = [
                 'score' => $model->getScore($id),
             ];

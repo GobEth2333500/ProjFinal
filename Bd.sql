@@ -5,7 +5,7 @@ USE projetfinal;
 CREATE TABLE input(
     id     INT              NOT NULL   AUTO_INCREMENT,
     inputName       VARCHAR(10)     NOT NULL,
-     used	BIT				NOT NULL,
+    used	BIT				NOT NULL,
     PRIMARY KEY(id)
 );
 
