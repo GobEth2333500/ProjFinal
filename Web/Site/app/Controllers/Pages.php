@@ -6,6 +6,7 @@ use App\Models\user;
 use App\Models\Input;
 use App\Models\NewsModel;
 use App\Models\Score;
+use App\Models\odel;
 use App\Models\userCon;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -139,11 +140,12 @@ class Pages extends BaseController
     public function EditRoles()
     {
         helper('form');
+        $db = \Config\Database::connect();
         $session = session();
         $userModel = model(NewsModel::class);
         $data = $this->request->getPost(['user','id','nb']);
         $users = $data['user'];
-        $id = $data['id'];
+        $role_id = $data['id'];
         $nb = $data['nb'];
 
         // Checks whether the submitted data passed the validation rules.
@@ -151,34 +153,32 @@ class Pages extends BaseController
         for ($x = 0; $x < $nb; $x++)
          {
             $data2 = $userModel->where('username', $users[$x])->first();
-            if ($id[$x] == "")
+            if ($role_id[$x] == "")
             {
                 $users[$x] = 'x';
             }
             else
             {
-                if ($id[$x] != "1" && $id[$x] != "2" && $id[$x] != "3")
+                if ($role_id[$x] != "1" && $role_id[$x] != "2" && $role_id[$x] != "3")
                 {
-                    $id[$x] = "3";
+                    $role_id[$x] = "3";
                 }
             }
 
             if ($users[$x] != 'x')
             {
+                if ($session->username == $data2['username'])
+                {
+                    $ses_data = [
+                        'role_id' => $int_id,
+                    ];
+                    $session->set($ses_data);
+                }
+                $int_id = (int)$role_id[$x];
 
-                $int_id = (int)$id[$x];
-                $data2Upd = [
-                    'role_id' =>$int_id,
-                    'username'  => $users[$x],
-                    'password'  => $data2['password'],
-                    'sel'       => $data2['sel'],
-                ];
-                $ses_data = [
-                    'role_id' => $int_id,
-                ];
-                $session->set($ses_data);
+
                 
-                $userModel->replace($data2Upd);
+                $db->query("UPDATE utilisateur SET role_id = ? WHERE id = ?", [$role_id[$x], $data2['id']]);
             }
             else{}
 
@@ -214,6 +214,7 @@ class Pages extends BaseController
             $model = model(Score::class);
             $session = session();
             $id = $session->id;
+
             $data = [
                 'score' => $model->getScore($id),
             ];

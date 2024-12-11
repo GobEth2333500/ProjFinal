@@ -1,6 +1,6 @@
-<style>
+<head>
 
-</style>
+</head>
 <div class="content">
 <?php 
 
