@@ -16,7 +16,7 @@
 <img src="../img/left.png" alt="" id="left" style="visibility: hidden">
 <img src="../img/right.png" alt="" id="right" style="visibility: hidden">
 <img src="../img/pressed.png" alt="" id="pressed" style="visibility: hidden">
-</div>   
+       
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
@@ -85,3 +85,4 @@ function LastInput(){
         return "used";
 }
 ?>
+</div>

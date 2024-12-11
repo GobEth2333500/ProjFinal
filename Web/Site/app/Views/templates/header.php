@@ -56,14 +56,14 @@ a{
         else{
         $menu="<a href='home'>Home</a>
          <a href='login'>Login</a>
-         <a href='inscription'>inscription</a>";
+         <a href='inscription'>Inscription</a>";
         }
      } 
      else
      {
       $menu="<a href='home'>Home</a>
       <a href='login'>Login</a>
-      <a href='inscription'>inscription</a>"
+      <a href='inscription'>Inscription</a>"
       ;
      }
      ?>

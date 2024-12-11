@@ -1,13 +1,32 @@
-<head>
-
-</head>
 <style>
-.page{
+.page{ 
+
    height:80vh;
 
+
+}
+.content{
+    display:flex;
+   flex-direction:column;
+   justify-content:center;
+   align-items:center;
+}
+h3{
+    margin:0;
+}
+form{
+    display:Flex;
+    flex-direction:column;
+    justify-self:center;
+    align-self:center;
 }
 
 </style>
+
+<head>
+
+</head>
+
 <div class="page">
 <div class="content">
 <?php 
@@ -20,19 +39,19 @@ $query   = $db->query('SELECT * FROM utilisateur');
 $results = $query->getResult();
 echo "<form action='/pages/EditRoles' method='post'>";
 $nb = 0;
-echo "<h3>1 = Admin<br>
-      2 = visiteur<br>
-      3 = Utilisateur</h3>";
+echo "<h3>1 = Admin
+      2 = visiteur
+      3 = Utilisateur</h3><br>";
 foreach ($results as $row) 
 {
    
-    echo " <input type='hidden' name='user[$nb]' value='$row->username'/>"."$row->username"
-    ." --> Permission Id "." <input type='number' name='id[$nb]' value ='' placeholder = '$row->role_id'>
-    <br>";
+    echo " <input type='hidden' name='user[$nb]' value='$row->username'/>"."<h3>$row->username"
+    ." --> Permission Id </h3>"." <input type='number' name='id[$nb]' value ='' placeholder = '$row->role_id'>
+    ";
     $nb ++;
 }
-echo "<input type='hidden' name='nb' value='$nb'/>"."Total Results: " . count($results);
-echo " <input type='submit' name='submit' value='login'>
+echo "<input type='hidden' name='nb' value='$nb'/>"."<h3>Total Results: " . count($results)."</h3>";
+echo " <input type='submit' name='submit' value='Submit Changes'>
 </form>";
 
 ?>
