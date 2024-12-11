@@ -19,7 +19,7 @@ class Pages extends BaseController
                 // Whoops, we don't have a page for that!
                 throw new PageNotFoundException($page);
             }
-    
+
             return view('templates/header')
                 . view('pages/' . $page)
                 . view('templates/footer');
@@ -111,6 +111,7 @@ class Pages extends BaseController
     public function logout()
     {
         $session = session();
+        session()->remove('username');
         $session->destroy();
         return $this->view("home");
 

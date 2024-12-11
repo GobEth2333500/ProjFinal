@@ -1,8 +1,23 @@
 <head>
-
-
      <meta http-equiv="refresh" content="222">
 <head>
+<style>
+.page{
+    display:flex;
+    flex-direction:column;
+
+   height:80vh;
+
+}
+.content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+</style>
+<div class="page">
 <div class="content">
 
 
@@ -29,5 +44,6 @@ $query   = $db->query('SELECT * FROM input  ORDER BY inputName DESC LIMIT 10');
 
 ?>
 </table>
+</div>
 </div>
 </div>

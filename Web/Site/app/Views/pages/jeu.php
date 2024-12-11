@@ -1,3 +1,11 @@
+<style>
+.page{
+   height:80vh;
+
+}
+
+</style>
+<div class="page">
 <h2>Javascriipt Button</h2>
 <button type="click" onclick="clickMeButton()">click me</button>
 
@@ -76,3 +84,5 @@ function LastInput(){
     else
         return "used";
 }
+?>
+</div>
