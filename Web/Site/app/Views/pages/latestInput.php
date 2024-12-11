@@ -3,8 +3,17 @@
 <head>
 <style>
 .page{
+    display:flex;
+    flex-direction:column;
+
    height:80vh;
 
+}
+.content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 </style>
